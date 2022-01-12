@@ -102,6 +102,7 @@ begin
             {---}
             lFileName := 'ScreenShot-' + formatdatetime('yyyymmddhhnnss',now) + '.png';
             Base64ToImageFile(lData, lFileName);
+            VirtualUI.DownloadFile(lFileName);
           end))
         .AsString := '';
       FRemoteObj.Events.Add('dohtml2canvasop');
