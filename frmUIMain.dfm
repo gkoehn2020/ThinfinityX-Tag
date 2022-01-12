@@ -14,32 +14,32 @@ object UIMain: TUIMain
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Button1: TButton
+  object btnGetScreenshot: TButton
     Left = 8
     Top = 8
     Width = 137
     Height = 25
     Caption = 'Get Screenshot'
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = btnGetScreenshotClick
   end
-  object Button2: TButton
+  object btnStartWorking: TButton
     Left = 151
     Top = 8
     Width = 122
     Height = 25
     Caption = 'Start Working'
     TabOrder = 1
-    OnClick = Button2Click
+    OnClick = btnStartWorkingClick
   end
-  object Button3: TButton
+  object btnStopWorking: TButton
     Left = 279
     Top = 8
     Width = 122
     Height = 25
     Caption = 'Stop Working'
     TabOrder = 2
-    OnClick = Button3Click
+    OnClick = btnStopWorkingClick
   end
   object pnlClock: TPanel
     Left = 0
@@ -49,9 +49,6 @@ object UIMain: TUIMain
     Align = alBottom
     Caption = 'pnlClock'
     TabOrder = 3
-    ExplicitLeft = 128
-    ExplicitTop = 144
-    ExplicitWidth = 185
   end
   object pnlOneHost: TPanel
     Left = 0

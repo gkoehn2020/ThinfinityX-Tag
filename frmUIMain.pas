@@ -9,16 +9,16 @@ uses
 
 type
   TUIMain = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
+    btnGetScreenshot: TButton;
+    btnStartWorking: TButton;
+    btnStopWorking: TButton;
     pnlClock: TPanel;
     pnlOneHost: TPanel;
     Timer1: TTimer;
     procedure FormCreate(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+    procedure btnGetScreenshotClick(Sender: TObject);
+    procedure btnStartWorkingClick(Sender: TObject);
+    procedure btnStopWorkingClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
@@ -41,12 +41,12 @@ uses
 
 {$R *.dfm}
 
-procedure TUIMain.Button1Click(Sender: TObject);
+procedure TUIMain.btnGetScreenshotClick(Sender: TObject);
 begin
   if Assigned(FWebComponent) then FWebComponent.GetScreenShot;
 end;
 
-procedure TUIMain.Button2Click(Sender: TObject);
+procedure TUIMain.btnStartWorkingClick(Sender: TObject);
 var
   jo: TJSonObject;
 begin
@@ -62,7 +62,7 @@ begin
   end;
 end;
 
-procedure TUIMain.Button3Click(Sender: TObject);
+procedure TUIMain.btnStopWorkingClick(Sender: TObject);
 var
   jo: TJSonObject;
 begin
