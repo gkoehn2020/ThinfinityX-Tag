@@ -1,5 +1,5 @@
 unit untSysWebComponent;
-
+{$WARN SYMBOL_PLATFORM OFF}
 interface
 
 uses
@@ -20,9 +20,7 @@ type
   TWebComponent = class(TObject)
   private
     FRemoteObj: TJSObject;
-    FFilename : string;
     FXtagDir: string;
-    FOnSignatureChanged: TNotifyEvent;
     function GetXTagDir: string;
     function GetHtmlDir: string;
     procedure Base64ToImageFile(aBase64Str: string; aFileName: string);
