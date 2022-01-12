@@ -15,11 +15,13 @@ type
     pnlClock: TPanel;
     pnlOneHost: TPanel;
     Timer1: TTimer;
+    btnSendMsg: TButton;
     procedure FormCreate(Sender: TObject);
     procedure btnGetScreenshotClick(Sender: TObject);
     procedure btnStartWorkingClick(Sender: TObject);
     procedure btnStopWorkingClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure btnSendMsgClick(Sender: TObject);
   private
     { Private declarations }
     FWebComponent: TWebComponent;
@@ -46,15 +48,14 @@ begin
   if Assigned(FWebComponent) then FWebComponent.GetScreenShot;
 end;
 
-procedure TUIMain.btnStartWorkingClick(Sender: TObject);
+procedure TUIMain.btnSendMsgClick(Sender: TObject);
 var
   jo: TJSonObject;
 begin
   jo := TJsonObject.Create;
   try
-    jo.AddPair('Action','orion-working-start');
+    jo.AddPair('Action','orMessageFromApp');
     jo.AddPair('Type','text/plain');
-    jo.AddPair('Title', 'Please wait');
     jo.AddPair('Msg', 'Hello World');
     VirtualUI.SendMessage(jo.ToJson);
   finally
@@ -62,18 +63,14 @@ begin
   end;
 end;
 
-procedure TUIMain.btnStopWorkingClick(Sender: TObject);
-var
-  jo: TJSonObject;
+procedure TUIMain.btnStartWorkingClick(Sender: TObject);
 begin
-  jo := TJsonObject.Create;
-  try
-    jo.AddPair('Action','orion-working-stop');
-    jo.AddPair('Type','text/plain');
-    VirtualUI.SendMessage(jo.ToJson);
-  finally
-    jo.Free;
-  end;
+  FWebComponent.StartWorking('Title','Msg');
+end;
+
+procedure TUIMain.btnStopWorkingClick(Sender: TObject);
+begin
+  FWebComponent.StopWorking;
 end;
 
 procedure TUIMain.FormCreate(Sender: TObject);

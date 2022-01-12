@@ -3,7 +3,7 @@ object UIMain: TUIMain
   Top = 0
   Caption = 'x-tag sample'
   ClientHeight = 290
-  ClientWidth = 419
+  ClientWidth = 538
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -44,20 +44,31 @@ object UIMain: TUIMain
   object pnlClock: TPanel
     Left = 0
     Top = 249
-    Width = 419
+    Width = 538
     Height = 41
     Align = alBottom
     Caption = 'pnlClock'
     TabOrder = 3
+    ExplicitWidth = 419
   end
   object pnlOneHost: TPanel
     Left = 0
     Top = 48
-    Width = 419
+    Width = 538
     Height = 201
     Align = alBottom
     Caption = 'pnlOneHost'
     TabOrder = 4
+    ExplicitWidth = 419
+  end
+  object btnSendMsg: TButton
+    Left = 407
+    Top = 8
+    Width = 122
+    Height = 25
+    Caption = 'Send Message'
+    TabOrder = 5
+    OnClick = btnSendMsgClick
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer

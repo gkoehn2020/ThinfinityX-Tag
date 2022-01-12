@@ -29,6 +29,8 @@ type
     destructor Destroy; override;
     procedure CreateWebComponent(aControl: TWinControl);
     procedure GetScreenShot;
+    procedure StartWorking(const aTitle: string; const aMsg: string);
+    procedure StopWorking;
     property  XTagDir: string read FXtagDir write FXTagDir;
   end;
 
@@ -104,6 +106,10 @@ begin
           end))
         .AsString := '';
       FRemoteObj.Events.Add('dohtml2canvasop');
+      FRemoteObj.Events.Add('orWorkingStart')
+        .AddArgument('aTitle', JSDT_STRING)
+        .AddArgument('aMsg', JSDT_STRING);
+      FRemoteObj.Events.Add('orWorkingStop');
       FRemoteObj.ApplyModel;
 
       VirtualUI.HTMLDoc.LoadScript('/x-tag/x-tag-core.min.js','');
@@ -162,5 +168,18 @@ begin
     end;
 end;
 
+
+procedure TWebComponent.StartWorking(const aTitle, aMsg: string);
+begin
+  FRemoteObj.Events['orWorkingStart']
+    .ArgumentAsString(0, aTitle)
+    .ArgumentAsString(1, aMsg)
+    .Fire;
+end;
+
+procedure TWebComponent.StopWorking;
+begin
+  FRemoteObj.Events['orWorkingStop'].Fire;
+end;
 
 end.

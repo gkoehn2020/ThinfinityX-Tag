@@ -12,30 +12,16 @@ xtag.register('x-simple-ponent', {
         if (message) {
           message = JSON.parse(message);
           switch (message.Action) {
-            case 'orion-working-start':
-              document.getElementById("splash").style.display = "block";
-              document.getElementById("splashgif").style.display = "inline";
-              document.getElementById("splashTitle").innerHTML = message.Title;
-              document.getElementById("splashMessage").innerHTML = message.Msg;
-              break;
-            case 'orion-working-stop':
-              document.getElementById("splash").style.display = "none";
-              document.getElementById("splashgif").style.display = "none";
-              document.getElementById("splashTitle").innerHTML = "";
-              document.getElementById("splashMessage").innerHTML = "";
-              break;
-            case 'orion-working-msg':
-              document.getElementById("splashTitle").innerHTML = message.Title;
-              document.getElementById("splashMessage").innerHTML = message.Msg;
+            case 'orMessageFromApp':
+              alert(message.Msg);
               break;
           }
         }
       };
-
     },
     inserted : function(){ 
       /* Called when the custom element is inserted into the DOM */ 
-      startJsRO(this.id);
+      startJsRO(this.id); // <-- comment out this line to make virtualUI.onReceiveMessage work!
     },
     removed  : function(){ 
       /* Called when the custom element is removed from the DOM */ 
@@ -63,4 +49,19 @@ function startJsRO(controlId) {
       ro.data = base64URL;
     });
   });
+
+ jsro.on('ro', 'orWorkingStart', function (aTitle, aMsg) {
+    document.getElementById("splash").style.display = "block";
+    document.getElementById("splashgif").style.display = "inline";
+    document.getElementById("splashTitle").innerHTML = aTitle;
+    document.getElementById("splashMessage").innerHTML = aMsg;
+  });
+
+ jsro.on('ro', 'orWorkingStop', function () {
+    document.getElementById("splash").style.display = "none";
+    document.getElementById("splashgif").style.display = "none";
+    document.getElementById("splashTitle").innerHTML = "";
+    document.getElementById("splashMessage").innerHTML = "";
+  });
+
 };
